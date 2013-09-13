@@ -5,26 +5,32 @@ describe('node-jquery-deparam', function(){
     it('loads', function(){
         require('../node-jquery-deparam').should.be.a('function');
     });
-    it('serializes strings', function(){
+    it('deserializes strings', function(){
         deparam('prop=sillystring').prop.should.be.a('string');
     });
-    it('serializes arrays', function(){
+    it('deserializes arrays', function(){
         deparam('prop[]=one&prop[]=two').prop.should.be.an('array');
     });
-    it('serializes objects', function(){
+    it('deserializes objects', function(){
         deparam('prop[prop2]=somestring').prop.should.be.an('object');
     });
-    it('serializes booleans', function(){
+    it('deserializes booleans', function(){
         deparam('prop=false').prop.should.be.a('boolean');
     });
-    it('serializes numbers', function(){
+    it('deserializes numbers', function(){
         deparam('prop=1234').prop.should.be.a('number');
     });
-    it('serializes booleans into strings when without coercion', function(){
+    it('deserializes booleans into strings when without coercion', function(){
         deparam('prop=false', false).prop.should.be.a('string');
     });
-    it('serializes numbers into strings when without coercion', function(){
+    it('deserializes numbers into strings when without coercion', function(){
         deparam('prop=1234', false).prop.should.be.a('string');
+    });
+    it('returns an empty object when provided querystring is not a string', function(){
+      deparam(123).should.be.empty;
+    });
+    it('returns an empty object when no querystring is provided', function(){
+      deparam().should.be.empty;
     });
     describe('bbq specs', function(){
         it('deserializes 1.4-style params', function(){

@@ -1,9 +1,13 @@
 module.exports = function( params, coerce ) {
+  var obj = {},
+    coerce_types = { 'true': !0, 'false': !1, 'null': null };
+
+  if(typeof params !== 'string') {
+    return obj;
+  }
   if(typeof coerce === 'undefined') {
     coerce = true;
   }
-  var obj = {},
-  coerce_types = { 'true': !0, 'false': !1, 'null': null };
 
   // Iterate over all name=value pairs.
   params.replace( /\+/g, ' ' ).split( '&' ).forEach(function(element) {
