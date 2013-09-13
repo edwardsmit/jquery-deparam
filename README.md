@@ -1,6 +1,6 @@
 node-jquery-deparam
 ===================
-Modified version of xxx his jquery-deparam. Removed jQuery dependency and only targeting node as deployment target.
+Modified version of Duncan Wong his jquery-deparam. Removed jQuery dependency and only targeting node as deployment target.
 
 Extracted $.deparam from Ben Alman's [jquery-bbq](https://github.com/cowboy/jquery-bbq/) with license info included.
 Deparam is the inverse of jquery's [$.param method](http://api.jquery.com/jQuery.param/).  It takes a parameterized querystring and converts it back into an object.  For example (from the included tests):
