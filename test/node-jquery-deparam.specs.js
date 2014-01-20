@@ -49,5 +49,13 @@ describe('node-jquery-deparam', function(){
             deparam(paramStr).should.deep.equal(paramsObj);
         });
     });
+    describe('Should work correctly with encoded characters', function(){
+      it('deserializes and decodes accented characters iso8859 ', function(){
+        deparam('par=t%e9l%e9+club+').par.should.equal('télé club ');
+      });
+      it('deserializes and decodes accented characters UTF-8 ', function(){
+        deparam('par=t%C3%A9l%C3%A9%20club%20').par.should.equal('télé club ');
+      });
+    });
 });
 

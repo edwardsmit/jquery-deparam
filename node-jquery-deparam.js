@@ -9,10 +9,20 @@ module.exports = function( params, coerce ) {
     coerce = true;
   }
 
+  function safeDecodeURIComponent(component) {
+    returnvalue = '';
+    try {
+      returnvalue = decodeURIComponent(component);
+    } catch(e) {
+      returnvalue = unescape(component);
+    }
+    return returnvalue;
+  }
+
   // Iterate over all name=value pairs.
   params.replace( /\+/g, ' ' ).split( '&' ).forEach(function(element) {
     var param = element.split( '=' ),
-    key = decodeURIComponent( param[0] ),
+    key = safeDecodeURIComponent( param[0] ),
       val,
       cur = obj,
       i = 0,
@@ -40,7 +50,9 @@ module.exports = function( params, coerce ) {
 
       // Are we dealing with a name=value pair, or just a name?
       if ( param.length === 2 ) {
-        val = decodeURIComponent( param[1] );
+        console.log('Pre-Decode');
+        val = safeDecodeURIComponent( param[1] );
+        console.log('Post-Decode');
 
         // Coerce values.
         if ( coerce ) {
