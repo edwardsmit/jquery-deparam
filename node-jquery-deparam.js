@@ -50,9 +50,7 @@ module.exports = function( params, coerce ) {
 
       // Are we dealing with a name=value pair, or just a name?
       if ( param.length === 2 ) {
-        console.log('Pre-Decode');
         val = safeDecodeURIComponent( param[1] );
-        console.log('Post-Decode');
 
         // Coerce values.
         if ( coerce ) {
